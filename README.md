@@ -31,7 +31,7 @@ cd Medical-Scheduling
 
 ## 2. Instalar dependências
 
-Na raiz do monorepo, execute:
+Na raiz do projeto, execute:
 
 ```bash
 pnpm install
