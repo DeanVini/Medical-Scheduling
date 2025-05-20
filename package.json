@@ -1,0 +1,19 @@
+{
+  "name": "medical-scheduling",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev":   "turbo run dev",
+    "test":  "turbo run test",
+    "dev:backend":  "cd apps/backend && ./mvnw spring-boot:run",
+    "build:backend":"cd apps/backend && ./mvnw clean package",
+    "test:backend": "cd apps/backend && ./mvnw test"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "packageManager": "pnpm@10.11.0"
+}
