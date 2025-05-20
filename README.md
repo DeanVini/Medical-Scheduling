@@ -22,7 +22,8 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 ## 1. Clonar o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/DeanVini/Medical-Scheduling
+
 cd Medical-Scheduling
 ```
 
