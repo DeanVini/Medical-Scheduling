@@ -1,4 +1,4 @@
-package com.deanvinicius.medical_scheduling;
+package com.api.medical_scheduling;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
