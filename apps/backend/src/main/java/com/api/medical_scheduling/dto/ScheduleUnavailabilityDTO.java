@@ -1,5 +1,6 @@
 package com.api.medical_scheduling.dto;
 
+import com.api.medical_scheduling.model.MedicProfile;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,4 +13,5 @@ public class ScheduleUnavailabilityDTO {
     private ZonedDateTime endTime;
     private String reason;
     private Boolean recurring;
+    private MedicProfile medic;
 }
