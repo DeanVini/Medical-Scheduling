@@ -1,6 +1,5 @@
 package com.api.medical_scheduling.repository;
 
-import com.api.medical_scheduling.interfaces.JpaSpecificationRepository;
 import com.api.medical_scheduling.model.User;
 
 import java.util.Optional;
