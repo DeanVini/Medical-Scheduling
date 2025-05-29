@@ -1,20 +1,26 @@
 package com.api.medical_scheduling.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -31,8 +37,14 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "medic_profile_id", referencedColumnName = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonBackReference(value = "medicProfile")
     private MedicProfile medicProfile;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Scheduling> patientSchedules = new ArrayList<>();
 
     private Boolean admin= false;
 
@@ -76,5 +88,10 @@ public class User implements UserDetails {
     @PrePersist
     protected void onCreate(){
         dateCreated = ZonedDateTime.now();
+    }
+
+    public void addSchedule(Scheduling scheduling) {
+        scheduling.setPatient(this);
+        patientSchedules.add(scheduling);
     }
 }

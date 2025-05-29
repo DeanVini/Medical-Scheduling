@@ -1,9 +1,11 @@
 package com.api.medical_scheduling.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +21,8 @@ public class MedicProfile {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @OneToOne(mappedBy = "medicProfile")
     private User user;
 
     private String specialty;
@@ -29,7 +30,7 @@ public class MedicProfile {
     @OneToMany(mappedBy = "medic", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ScheduleUnavailability> unavailabilities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "medic", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "medicProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Scheduling> schedules = new ArrayList<>();
 
     public void addUnavailability(ScheduleUnavailability unavailability) {
@@ -39,7 +40,7 @@ public class MedicProfile {
 
     public void addSchedule(Scheduling scheduling) {
         schedules.add(scheduling);
-        scheduling.setMedic(this);
+        scheduling.setMedicProfile(this);
     }
 
 }

@@ -20,11 +20,12 @@ public class Scheduling {
     private ZonedDateTime dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "medic_id")
-    private MedicProfile medic;
+    @JoinColumn(name = "medic_profile_id")
+    private MedicProfile medicProfile;
 
-
-    private String patient;
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private User patient;
 
     private String status;
 
