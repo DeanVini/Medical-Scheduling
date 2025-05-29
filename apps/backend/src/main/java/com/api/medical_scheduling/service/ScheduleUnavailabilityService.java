@@ -14,7 +14,7 @@ public class ScheduleUnavailabilityService {
     private final ScheduleUnavailabilityRepository scheduleUnavailabilityRepository;
 
     public ScheduleUnavailability getUnavailability(Long medicId) throws ResourceNotFoundException {
-        return scheduleUnavailabilityRepository.getScheduleUnavailabilitiesByMedic(medicId)
+        return scheduleUnavailabilityRepository.getScheduleUnavailabilitiesByMedicId(medicId)
                 .orElseThrow(() -> new ResourceNotFoundException("Esse médico não possui nenhuma indisponibilidade cadastrada"));
     }
     public ScheduleUnavailability updateUnavailability(Long unavailabilityId, ScheduleUnavailabilityDTO scheduleUnavailabilityDTO) throws ResourceNotFoundException {

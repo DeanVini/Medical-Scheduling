@@ -1,5 +1,7 @@
 package com.api.medical_scheduling.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +21,8 @@ public class ScheduleUnavailability {
 
     @ManyToOne
     @JoinColumn(name = "medic_id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonBackReference(value = "medic")
     private MedicProfile medic;
 
     @Column(nullable = false)
