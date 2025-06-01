@@ -6,6 +6,7 @@ import com.api.medical_scheduling.exception.InvalidLoginException;
 import com.api.medical_scheduling.model.User;
 import com.api.medical_scheduling.repository.UserRepository;
 import com.api.medical_scheduling.validations.NewUserValidator;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
@@ -26,20 +28,6 @@ public class AuthService {
     private final UserRepository userRepository;
     private final List<NewUserValidator> newUserValidators;
 
-    @Autowired
-    private AuthService(AuthenticationManager authenticationManager,
-                        UserDetailsService userDetailsService,
-                        JwtService jwtService,
-                        PasswordEncoder passwordEncoder,
-                        UserRepository userRepository,
-                        List<NewUserValidator> newUserValidators) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtService = jwtService;
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.newUserValidators = newUserValidators;
-    }
 
     public String authenticate(@NotNull AuthRequestDTO authRequestDTO) {
         try {

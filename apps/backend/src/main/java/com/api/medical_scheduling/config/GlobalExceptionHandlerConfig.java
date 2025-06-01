@@ -134,4 +134,15 @@ public class GlobalExceptionHandlerConfig {
                         .statusCode(HttpStatus.UNAUTHORIZED.value())
                         .build());
     }
+
+    @ExceptionHandler(InvalidSchedulingException.class)
+    public ResponseEntity<ErrorResponseDTO> handleInvalidSchedulingException(InvalidResourceException exception){
+        String errorMessage = Objects.requireNonNull(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ErrorResponseDTO.builder()
+                        .error("INVALID_SCHEDULING")
+                        .message(errorMessage)
+                        .statusCode(HttpStatus.FORBIDDEN.value())
+                        .build());
+    }
 }

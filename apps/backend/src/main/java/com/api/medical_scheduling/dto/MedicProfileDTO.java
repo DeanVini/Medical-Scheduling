@@ -1,5 +1,6 @@
 package com.api.medical_scheduling.dto;
 
+import com.api.medical_scheduling.model.Scheduling;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class MedicProfileDTO {
     private List<ScheduleUnavailabilityDTO> unavailabilities;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<ScheduleRequestDTO> scheduleRequests;
+    private List<Scheduling> scheduleRequests;
 
 
 }
